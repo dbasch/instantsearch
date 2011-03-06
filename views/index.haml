@@ -1,11 +1,15 @@
 %html
   %head
-    %title IndexTank Demo Search
+    %title IndexTank Demo Search 
+    %link{"rel" => "stylesheet", "href" => "style.css", "type" => "text/css"}
   %body
+  #header
     %h1 IndexTank Demo Search
     %form{ :action=>"/search"}
+      find musical instruments:
       %input{ :type=>"text", :name=>"query", :value=>"#{@query}"}
       %input{ :type=>"submit", :value=>"Search"}
+  #results
     - if @results
       %strong #{@results['matches']} 
       results in 
@@ -13,7 +17,9 @@
       seconds. 
       %p
       - @results['results'].each do |r|
-        <a href="http://freebase.com/view#{r['docid']}">#{r['name']}</a> 
+        %a(href="http://freebase.com/view#{r['docid']}") #{r['name']}
         %br
+        #{r['family']}
         #{r['snippet_text']}
         %p
+        
