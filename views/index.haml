@@ -1,0 +1,19 @@
+%html
+  %head
+    %title IndexTank Demo Search
+  %body
+    %h1 IndexTank Demo Search
+    %form{ :action=>"/search"}
+      %input{ :type=>"text", :name=>"query", :value=>"#{@query}"}
+      %input{ :type=>"submit", :value=>"Search"}
+    - if @results
+      %strong #{@results['matches']} 
+      results in 
+      %strong #{@results['search_time']}
+      seconds. 
+      %p
+      - @results['results'].each do |r|
+        <a href="http://freebase.com/view#{r['docid']}">#{r['name']}</a> 
+        %br
+        #{r['snippet_text']}
+        %p
