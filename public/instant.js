@@ -3,7 +3,7 @@ var request;
 
 //Create HTML structure for the results and insert it on the result div
 function showResults(data){
-  var resultHtml = '';
+  var resultHtml = data.matches + ' results in ' + data.search_time + ' seconds<p/>';
   $.each(data.results, function(i,item){
       resultHtml+='<div class="result">';
       resultHtml+='<h2><a href="http://freebase.com/view' + item.docid + '">'+item.name+'</a></h2>';
