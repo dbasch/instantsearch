@@ -2,37 +2,23 @@
   %head
     %title IndexTank Demo Search 
     %link{"rel" => "stylesheet", "href" => "style.css", "type" => "text/css"}
-    <script src='http://www.google.com/jsapi' type='text/javascript'></script> 
+    %script{ :src=>"http://www.google.com/jsapi", :type=>"text/javascript"}
     <script type='text/javascript'> 
     var theme = "flick";
+    var publicApiUrl = "http://yxu3.api.indextank.com";
+    var indexName = "test";
+    var elementId = "#query";
+    var remoteSource = publicApiUrl + "/v1/indexes/" + indexName + "/autocomplete";
     google.load("jquery", "1.4.4");
     google.load("jqueryui", "1.8.7");
     google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
     </script> 
-    <script type='text/javascript'> var publicApiUrl = "http://yxu3.api.indextank.com";
-    var indexName = "test";
-    var elementId = "#query";
-    var remoteSource = publicApiUrl + "/v1/indexes/" + indexName + "/autocomplete";
-    </script> 
   %body
   #header
     %h1 IndexTank Demo Search
-    %form{ :action=>"/search"}
+    %form{ :action=>""}
       find musical instruments:
-      %input{ :type=>"text", :id=>"query", :name=>"query", :value=>"#{@query}"}
-      %input{ :type=>"submit", :value=>"Search"}
+      %input{ :type=>"text", :id=>"query", :name=>"query", :value=>"#{@query}", :size=>"30"}
     %script{:type => "text/javascript", :src  => "instant.js" }
+    <script>document.getElementById("query").focus();</script>
   #results
-    - if @results
-      %strong #{@results['matches']} 
-      results in 
-      %strong #{@results['search_time']}
-      seconds. 
-      %p
-      - @results['results'].each do |r|
-        %a(href="http://freebase.com/view#{r['docid']}") #{r['name']}
-        %br
-        #{r['family']}
-        #{r['snippet_text']}
-        %p
-        

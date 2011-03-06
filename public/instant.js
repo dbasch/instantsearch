@@ -30,7 +30,7 @@ $('input#query').keyup(function(e){
     }
 
     runningRequest=true;
-    request = $.getJSON('search',{ query:$q.val(), fmt:"json" },function(data){ showResults(data);
+    request = $.getJSON('search',{ query:$q.val() },function(data){ showResults(data);
     runningRequest=false;
 });
 
@@ -49,27 +49,13 @@ var sourceCallback = function( request, responseCallback ) {
     dataType: "jsonp",
     data: { query: request.term },
     success: function( data ) { responseCallback( data.suggestions ); 
-    request = $.getJSON('search',{ query:data.suggestions[0], fmt:"json" },function(data){ showResults(data); }); 
+    request = $.getJSON('search',{ query:data.suggestions[0] },function(data){ showResults(data); }); 
   } });
 };
 
 var selectCallback = function(event, ui) { 
-$('input#query').value = ui.item.value;
-request = $.getJSON('search',{ query:ui.item.value, fmt:"json" },function(data){ showResults(data); });
-
-
-/*
-$.ajax( {
-    url: remoteSource,
-    dataType: "jsonp",
-    data: { query: ui.item.value },
-    success: function( data ) { responseCallback( data.suggestions );
-    request = $.getJSON('search',{ query:data.suggestions[0], fmt:"json" },function(data){ showResults(data); });
-  } });
-
-  event.target.value = data.suggestions[0]; 
-  //event.target.form.submit();
-*/
+  $('input#query').value = ui.item.value;
+  request = $.getJSON('search',{ query:ui.item.value },function(data){ showResults(data); });
 };
 
 $( elementId ).autocomplete( {

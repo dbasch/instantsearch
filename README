@@ -1,0 +1,15 @@
+This is a demo of how to use IndexTank with autocomplete and instant search. To try it out:
+
+- get a free account at http://indextank.com
+- edit views/index.haml and replace your api_url and index values
+- do the same in config.yml
+- run indexer.rb to index the document
+- run search.rb to start the sinatra app.
+
+To learn more about IndexTank's autocomplete, visit:
+
+http://indextank.com/documentation/tutorial-autocomplete
+
+The instant search part is based on this article:
+
+http://woorkup.com/2010/09/13/how-to-create-your-own-instant-search/

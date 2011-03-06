@@ -16,11 +16,6 @@ get '/search' do
   @query = params[:query]
   if @query and @query != ''
     @results = idx.search(@query, :fetch => 'name,family,variation', :snippet => 'text')
-    puts @results
-  end
-  if params[:fmt] == 'json'
-     @results.to_json
-  else
-    haml :index
+    @results.to_json
   end
 end
