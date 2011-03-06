@@ -2,6 +2,7 @@ require 'sinatra'
 require 'indextank'
 require 'haml'
 require 'yaml'
+require 'json'
 
 CONFIG = YAML.load_file 'config.yml'
 
@@ -17,5 +18,9 @@ get '/search' do
     @results = idx.search(@query, :fetch => 'name,family,variation', :snippet => 'text')
     puts @results
   end
-  haml :index
+  if params[:fmt] == 'json'
+     @results.to_json
+  else
+    haml :index
+  end
 end

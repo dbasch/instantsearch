@@ -2,13 +2,15 @@
   %head
     %title IndexTank Demo Search 
     %link{"rel" => "stylesheet", "href" => "style.css", "type" => "text/css"}
+    <script src="http://code.jquery.com/jquery-1.5.js"></script>
   %body
   #header
     %h1 IndexTank Demo Search
     %form{ :action=>"/search"}
       find musical instruments:
-      %input{ :type=>"text", :name=>"query", :value=>"#{@query}"}
+      %input{ :type=>"text", :id=>"query", :name=>"query", :value=>"#{@query}"}
       %input{ :type=>"submit", :value=>"Search"}
+    %script{:type => "text/javascript", :src  => "instant.js" }
   #results
     - if @results
       %strong #{@results['matches']} 
