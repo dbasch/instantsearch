@@ -25,7 +25,7 @@ function showResults(data, highlight){
   var resultHtml = '';
   $.each(data.results, function(i,item){
       resultHtml+='<div class="result">';
-      resultHtml+='<h2><a href="http://freebase.com/view"' + item.id + '>'+item.name+'</a></h2>';
+      resultHtml+='<h2><a href="http://freebase.com/view"' + item.docid + '>'+item.name+'</a></h2>';
       resultHtml+='<p>'+item.snippet_text+'</p>';
       resultHtml+='</div>';
       });
