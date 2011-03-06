@@ -1,5 +1,19 @@
 var runningRequest = false;
 var request;
+
+//Create HTML structure for the results and insert it on the result div
+function showResults(data){
+  var resultHtml = '';
+  $.each(data.results, function(i,item){
+      resultHtml+='<div class="result">';
+      resultHtml+='<h2><a href="http://freebase.com/view' + item.docid + '">'+item.name+'</a></h2>';
+      resultHtml+='<p>'+item.snippet_text+'</p>';
+      resultHtml+='</div>';
+      });
+
+  $('div#results').html(resultHtml);
+}
+
 //Identify the typing action
 $('input#query').keyup(function(e){
     e.preventDefault();
@@ -16,24 +30,54 @@ $('input#query').keyup(function(e){
     }
 
     runningRequest=true;
-    request = $.getJSON('search',{ query:$q.val(), fmt:"json" },function(data){ showResults(data,$q.val());
+    request = $.getJSON('search',{ query:$q.val(), fmt:"json" },function(data){ showResults(data);
     runningRequest=false;
 });
 
-//Create HTML structure for the results and insert it on the result div
-function showResults(data, highlight){
-  var resultHtml = '';
-  $.each(data.results, function(i,item){
-      resultHtml+='<div class="result">';
-      resultHtml+='<h2><a href="http://freebase.com/view' + item.docid + '">'+item.name+'</a></h2>';
-      resultHtml+='<p>'+item.snippet_text+'</p>';
-      resultHtml+='</div>';
-      });
-
-  $('div#results').html(resultHtml);
-}
 
 $('form').submit(function(e){
     e.preventDefault();
     });
 });
+
+google.setOnLoadCallback(function() {
+$(function() {
+
+var sourceCallback = function( request, responseCallback ) {
+  $.ajax( {
+    url: remoteSource,
+    dataType: "jsonp",
+    data: { query: request.term },
+    success: function( data ) { responseCallback( data.suggestions ); 
+    request = $.getJSON('search',{ query:data.suggestions[0], fmt:"json" },function(data){ showResults(data); }); 
+  } });
+};
+
+var selectCallback = function(event, ui) { 
+$('input#query').value = ui.item.value;
+request = $.getJSON('search',{ query:ui.item.value, fmt:"json" },function(data){ showResults(data); });
+
+
+/*
+$.ajax( {
+    url: remoteSource,
+    dataType: "jsonp",
+    data: { query: ui.item.value },
+    success: function( data ) { responseCallback( data.suggestions );
+    request = $.getJSON('search',{ query:data.suggestions[0], fmt:"json" },function(data){ showResults(data); });
+  } });
+
+  event.target.value = data.suggestions[0]; 
+  //event.target.form.submit();
+*/
+};
+
+$( elementId ).autocomplete( {
+  source: sourceCallback,
+  minLength: 2,
+  delay: 100,
+  select: selectCallback
+} );
+
+}); // $ fun
+}); // g callback

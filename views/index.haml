@@ -2,7 +2,18 @@
   %head
     %title IndexTank Demo Search 
     %link{"rel" => "stylesheet", "href" => "style.css", "type" => "text/css"}
-    <script src="http://code.jquery.com/jquery-1.5.js"></script>
+    <script src='http://www.google.com/jsapi' type='text/javascript'></script> 
+    <script type='text/javascript'> 
+    var theme = "flick";
+    google.load("jquery", "1.4.4");
+    google.load("jqueryui", "1.8.7");
+    google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
+    </script> 
+    <script type='text/javascript'> var publicApiUrl = "http://yxu3.api.indextank.com";
+    var indexName = "test";
+    var elementId = "#query";
+    var remoteSource = publicApiUrl + "/v1/indexes/" + indexName + "/autocomplete";
+    </script> 
   %body
   #header
     %h1 IndexTank Demo Search
