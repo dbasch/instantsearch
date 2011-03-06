@@ -108,3 +108,10 @@ a.out {
   background: url('/images/link-out.gif') center right no-repeat;
   padding-right: 12px;
 }
+
+input {
+  width: 200px;
+  height: 30px;
+  font-size: 18px;
+
+}

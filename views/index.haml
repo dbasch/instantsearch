@@ -1,6 +1,6 @@
 %html
   %head
-    %title IndexTank Demo Search 
+    %title IndexTank - Instant Search Demo
     %link{"rel" => "stylesheet", "href" => "style.css", "type" => "text/css"}
     %script{ :src=>"http://www.google.com/jsapi", :type=>"text/javascript"}
     <script type='text/javascript'> 
@@ -15,10 +15,10 @@
     </script> 
   %body
   #header
-    %h1 IndexTank Demo Search
+    %h1 IndexTank - Instant Search Demo
     %form{ :action=>""}
       find musical instruments:
-      %input{ :type=>"text", :id=>"query", :name=>"query", :value=>"#{@query}", :size=>"30"}
+      %input{ :type=>"text", :id=>"query", :name=>"query", :value=>"#{@query}"}
     %script{:type => "text/javascript", :src  => "instant.js" }
     <script>document.getElementById("query").focus();</script>
   #results
