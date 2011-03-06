@@ -7,6 +7,8 @@ require 'json'
 CONFIG = YAML.load_file 'config.yml'
 
 get '/' do
+  @idx = CONFIG['index']
+  @public_url = 'http://' + CONFIG['api_url'].split('@')[1]
   haml :index
 end
 
