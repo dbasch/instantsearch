@@ -11,8 +11,7 @@ f.readline #discard header
 count = 0
 f.each_line do |l|
   name,id,family,variation,instrumentalists  = l.split /\t/ 
-  text = name + ' ' + family + ' ' + variation + ' ' + instrumentalists
-  idx.document(id).add({:text => text, :name => name, :family => family, :variation => variation})
+  idx.document(id).add({:text => l, :name => name, :family => family, :variation => variation})
   count += 1
   if count % 50 == 0
     printf "Added %s documents\n", count
