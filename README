@@ -1,4 +1,8 @@
-This is a demo of how to use IndexTank with autocomplete and instant search. To try it out:
+This is a demo of how to use IndexTank with autocomplete and instant search. See it running at:
+
+http://instruments.heroku.com
+
+To try it out:
 
 - get a free account at http://indextank.com
 - edit config.yml with your api_url and index values
