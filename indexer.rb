@@ -12,11 +12,8 @@ puts "Indexing..."
 f = File.open("instrument.tsv")
 f.readline #discard header
 docs = Array.new
-=begin
 f.each_line do |l|
   name,id,family,variation,instrumentalists  = l.split /\t/
   docs << {:docid => id, :fields => {:text => l, :name => name, :family => family, :variation => variation}}
 end
 printf "Indexed %d documents.\n", idx.batch_insert(docs).size
-=end
-puts idx.promote("violin", 'Joaquín López-Dóriga').status
